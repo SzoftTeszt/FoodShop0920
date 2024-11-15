@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BaseService } from '../base.service';
 import { SearchService } from '../search.service';
+import { KosarService } from '../kosar.service';
 
 @Component({
   selector: 'app-foods',
@@ -13,8 +14,11 @@ export class FoodsComponent {
   rendezesTomb=["Alapértelmezett","Olcsók elől","Drágák elől"]
   rendezesAllapot=1
   
-  constructor(private base:BaseService, 
-    public search:SearchService){
+  constructor(
+    private base:BaseService, 
+    private search:SearchService,
+    private ks:KosarService
+  ){
     this.base.getFoods().subscribe(
       (res)=>this.foods=res
     )
@@ -36,7 +40,8 @@ export class FoodsComponent {
   }
 
   addTetel(food:any, db:any){
-    console.log(food, "Darab szám:",db)
+    // console.log(food, "Darab szám:",db)
+    this.ks.addFood(food, db)
   }
 
 
