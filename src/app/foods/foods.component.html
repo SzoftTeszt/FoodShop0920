@@ -8,17 +8,34 @@
 
 <div class="row row-cols-1 row-cols-md-4 g-4">
 
-    <div *ngFor="let food of (foods|search:keresoSzo|sort:rendezesAllapot)" class="col">
+    <!-- <div *ngFor="let food of (foods|search:keresoSzo|sort:rendezesAllapot)" class="col"> -->
+    <div *ngFor="let food of (foods|search:keresoSzo|sort:rendezesAllapot)" class="col-md-4">
       <div class="card h-100">
         <img [src]="food.kep" class="card-img-top" alt="ételkép">
         <div class="card-body">
-          <h5 class="card-title">Élelmiszer</h5>
+          <h5 class="card-title">{{food.nev}}</h5>
           <p class="card-text">
             {{food.leiras}}
           </p>
         </div>
         <div class="card-footer">
-          <small class="text-muted">{{food.ar}}/{{food.mennyiseg}}</small>
+         
+          <small class="text-muted">
+            <div class="row">
+              <div class="col mt-2">
+              {{food.ar}}Ft/{{food.mennyiseg}}
+            </div>
+            <div class="col">
+              <div class="input-group">
+                <input #db value="1" type="number" class="form-control">
+                <span class="input-group-text" id="basic-addon2"> 
+                  <i (click)="addTetel(food, db.value)" class="bi bi-cart2"></i>
+                </span>
+              </div>
+             
+            </div>          
+            </div>
+          </small>
         </div>
       </div>
     </div>

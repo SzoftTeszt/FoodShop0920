@@ -11,7 +11,7 @@ export class FoodsComponent {
   foods:any=[]
   keresoSzo=""
   rendezesTomb=["Alapértelmezett","Olcsók elől","Drágák elől"]
-  rendezesAllapot=0
+  rendezesAllapot=1
   
   constructor(private base:BaseService, 
     public search:SearchService){
@@ -32,7 +32,12 @@ export class FoodsComponent {
 
   RendezesIranyValt(){
     this.rendezesAllapot=(this.rendezesAllapot==2?0:++this.rendezesAllapot)
-
+    if (this.rendezesAllapot==0) this.rendezesAllapot=1
   }
+
+  addTetel(food:any, db:any){
+    console.log(food, "Darab szám:",db)
+  }
+
 
 }
